@@ -1,0 +1,40 @@
+<mxfile host="65bd71144e">
+    <diagram id="zKpWsSEepz8bYYJNQkNz" name="Page-1">
+        <mxGraphModel dx="664" dy="563" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="160" width="360" height="800" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="160" width="360" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Nav" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="170" width="40" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="previousStepBtn" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="230" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="nextStepBtn" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="870" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="Step View" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="430" width="340" height="280" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Overview" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="310" width="340" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="strtTmrBtn" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="430" y="720" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="stoptTmrBtn" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="430" y="800" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Timer view" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="180" y="720" width="240" height="130" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
