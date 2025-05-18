@@ -1,1 +1,5 @@
 node_modules/
+Build/
+Docker/.env
+Server/.env.development
+Server/.env.production
