@@ -2,3 +2,14 @@
 
 ### Test the hello world endpoint
 GET {{baseurl}}
+
+### Get the 100 most recent app statuses
+GET {{baseurl}}/app-status
+
+### Add a new status to the app_status table
+POST {{baseurl}}/app-status
+Content-Type: application/json
+
+{
+  "status_message": "Manually added status message"
+}
