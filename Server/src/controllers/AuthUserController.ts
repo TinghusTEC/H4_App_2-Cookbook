@@ -64,6 +64,7 @@ export const createUserHandler = async (req: Request, res: Response): Promise<vo
       return;
     }
 
+    // TODO: Add hashing for password
     const user = await createUser({ email, password, displayName });
     res.status(201).json(user);
   } catch (error) {
