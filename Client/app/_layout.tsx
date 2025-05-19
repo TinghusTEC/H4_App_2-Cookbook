@@ -22,7 +22,8 @@ export default function RootLayout() {
           <Stack.Screen name="index" options={{ title: "Home" }} />
           <Stack.Screen name="recipe/[id]" options={{ title: "Recipes" }} />
           <Stack.Screen name="cook/[id]" options={{ title: "Cook" }} />
-          {/* Add more screens as needed */}
+          <Stack.Screen name="recipe/index" options={{ title: "Recipes" }} />
+          <Stack.Screen name="recipeList/index" options={{ title: "Recipes" }} />
         </Stack>
       </View>
     </AuthProvider>

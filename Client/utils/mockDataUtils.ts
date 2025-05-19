@@ -23,13 +23,7 @@ export const mockDataUtils = {
     generateId: () => {
         return Math.random().toString(36).substring(2, 15);
     },
-    getRecipeImageUrl: (recipeId: string | null = null) => {
-        if (!recipeId) {
-            return "/assets/images/recipes/default.jpg";
-        }
-        const imagePath = `/assets/images/recipes/${recipeId}.jpg`;   
-        return imagePath;
-    },
+    getRecipeImageUrl: () => require("../assets/images/recipes/default.jpg"),
     getRandomDateWithinDays: (days: number) => {
         const now = new Date();
         const past = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
