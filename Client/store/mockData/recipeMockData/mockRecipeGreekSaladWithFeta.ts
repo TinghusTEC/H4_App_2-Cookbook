@@ -9,7 +9,7 @@ export const mockRecipeGreekSaladWithFeta: IRecipe = {
   globalRating: 4.4,
   yourRating: 4,
   tags: ["Greek", "Salad", "Vegetarian", "Healthy"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Tomatoes", quantity: "3", unit: "pcs" },
     { id: mockDataUtils.generateId(), name: "Cucumber", quantity: "1", unit: "pcs" },

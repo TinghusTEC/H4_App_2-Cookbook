@@ -9,7 +9,7 @@ export const mockRecipeChocolateLavaCake: IRecipe = {
   globalRating: 4.9,
   yourRating: 5,
   tags: ["Dessert", "Chocolate", "Cake"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Dark Chocolate", quantity: "100", unit: "g" },
     { id: mockDataUtils.generateId(), name: "Butter", quantity: "100", unit: "g" },

@@ -9,7 +9,7 @@ export const mockRecipeChickenTikkaMasala: IRecipe = {
   globalRating: 4.6,
   yourRating: 4,
   tags: ["Indian", "Curry", "Chicken"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Chicken Breast", quantity: "500", unit: "g" },
     { id: mockDataUtils.generateId(), name: "Yogurt", quantity: "100", unit: "g" },

@@ -9,7 +9,7 @@ export const mockRecipeSalmonTeriyakiBowl: IRecipe = {
   globalRating: 4.7,
   yourRating: 5,
   tags: ["Japanese", "Fish", "Rice", "Healthy"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Salmon Fillet", quantity: "2", unit: "pcs" },
     { id: mockDataUtils.generateId(), name: "Rice", quantity: "200", unit: "g" },
