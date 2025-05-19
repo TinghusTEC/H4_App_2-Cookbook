@@ -10,7 +10,7 @@ export interface IRecipe {
     ingredients: IIngredient[];
     steps: IRecipeStep[];
     kitchenware: IKitchenware[];
-    preparationTime: number; // in minutes
+    workingTime: number; // in minutes
     cookingTime: number; // in minutes
     totalTime: number; // in minutes
     cookHistoryIds: string[];
@@ -42,6 +42,7 @@ export interface ICookingStep {
 
 export interface IStepTimer {
     id: string;
+    text: string;
     duration: number;
     startTime: number;
 }

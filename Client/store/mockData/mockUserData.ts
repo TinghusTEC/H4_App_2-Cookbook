@@ -1,5 +1,4 @@
 import { IAuthUser } from "../../interfaces/IAuthUser";
-import { mockDataUtils } from "../../utils/mockDataUtils";
 
 export const mockUsers: IAuthUser[] = [
     {
