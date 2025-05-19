@@ -68,7 +68,7 @@ export const mockRecipeChickenTikkaMasala: IRecipe = {
     { id: mockDataUtils.generateId(), name: "Bowl" },
     { id: mockDataUtils.generateId(), name: "Spoon" }
   ],
-  preparationTime: 20,
+  workingTime: 20,
   cookingTime: 35,
   totalTime: 55,
   cookHistoryIds: [mockDataUtils.generateId(), mockDataUtils.generateId()]

@@ -23,7 +23,7 @@ export const mockDataUtils = {
     generateId: () => {
         return Math.random().toString(36).substring(2, 15);
     },
-    getRecipeImageUrl: (recipeId: string | null) => {
+    getRecipeImageUrl: (recipeId: string | null = null) => {
         if (!recipeId) {
             return "/assets/images/recipes/default.jpg";
         }

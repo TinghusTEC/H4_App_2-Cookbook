@@ -70,7 +70,7 @@ export const mockRecipeVegetarianChili: IRecipe = {
     { id: mockDataUtils.generateId(), name: "Knife" },
     { id: mockDataUtils.generateId(), name: "Spoon" }
   ],
-  preparationTime: 10,
+  workingTime: 10,
   cookingTime: 30,
   totalTime: 40,
   cookHistoryIds: [mockDataUtils.generateId(), mockDataUtils.generateId()]

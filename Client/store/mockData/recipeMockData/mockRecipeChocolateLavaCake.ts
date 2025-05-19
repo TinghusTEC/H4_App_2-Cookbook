@@ -77,7 +77,7 @@ export const mockRecipeChocolateLavaCake: IRecipe = {
     { id: mockDataUtils.generateId(), name: "Whisk" },
     { id: mockDataUtils.generateId(), name: "Spatula" }
   ],
-  preparationTime: 10,
+  workingTime: 10,
   cookingTime: 10,
   totalTime: 20,
   cookHistoryIds: [mockDataUtils.generateId(), mockDataUtils.generateId()]

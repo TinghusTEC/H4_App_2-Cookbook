@@ -58,7 +58,7 @@ export const mockRecipeCabonara: IRecipe = {
     { id: mockDataUtils.generateId(), name: "Pan" },
     { id: mockDataUtils.generateId(), name: "Bowl" }
   ],
-  preparationTime: 10,
+  workingTime: 10,
   cookingTime: 15,
   totalTime: 25,
   cookHistoryIds: [mockDataUtils.generateId(), mockDataUtils.generateId()]

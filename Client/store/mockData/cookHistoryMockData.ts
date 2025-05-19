@@ -5,7 +5,7 @@ import { mockDataUtils } from "../../utils/mockDataUtils";
 export const cookHistoryMockData: ICookHistory[] = Array.from({ length: 15 }).map((_, i) => {
   const recipe = recipeMockData[i % recipeMockData.length];
   const totalCookTime = mockDataUtils.getRandomTimeNear(recipe.totalTime, 0.1);
-  const workingTime = mockDataUtils.getRandomTimeNear(recipe.preparationTime + recipe.cookingTime, 0.1);
+  const workingTime = mockDataUtils.getRandomTimeNear(recipe.workingTime + recipe.cookingTime, 0.1);
 
   return {
     id: mockDataUtils.generateId(),

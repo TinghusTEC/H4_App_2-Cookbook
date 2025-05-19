@@ -68,7 +68,7 @@ export const mockRecipePulledPorkSandwiches: IRecipe = {
     { id: mockDataUtils.generateId(), name: "Fork" },
     { id: mockDataUtils.generateId(), name: "Knife" }
   ],
-  preparationTime: 15,
+  workingTime: 15,
   cookingTime: 360,
   totalTime: 375,
   cookHistoryIds: [mockDataUtils.generateId(), mockDataUtils.generateId()]

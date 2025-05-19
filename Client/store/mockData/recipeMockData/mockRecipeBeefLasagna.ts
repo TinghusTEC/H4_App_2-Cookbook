@@ -81,7 +81,7 @@ export const mockRecipeBeefLasagna: IRecipe = {
     { id: mockDataUtils.generateId(), name: "Oven" },
     { id: mockDataUtils.generateId(), name: "Knife" }
   ],
-  preparationTime: 20,
+  workingTime: 20,
   cookingTime: 60,
   totalTime: 80,
   cookHistoryIds: [mockDataUtils.generateId(), mockDataUtils.generateId()]

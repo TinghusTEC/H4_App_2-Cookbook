@@ -70,7 +70,7 @@ export const mockRecipeSalmonTeriyakiBowl: IRecipe = {
     { id: mockDataUtils.generateId(), name: "Bowl" },
     { id: mockDataUtils.generateId(), name: "Knife" }
   ],
-  preparationTime: 10,
+  workingTime: 10,
   cookingTime: 25,
   totalTime: 35,
   cookHistoryIds: [mockDataUtils.generateId(), mockDataUtils.generateId()]
