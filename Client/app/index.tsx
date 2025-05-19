@@ -1,12 +1,13 @@
-import { View, Button, StyleSheet } from 'react-native';
-import { useAuth } from '../context/AuthContext';
-import { Login } from '../components/Login';
-import { CookHistoryWidget } from '../components/CookHistoryWidget';
-import { useEffect, useState } from 'react';
-import { getCookHistory } from '../services/cookHistoryService';
-import type { ICookHistory } from '../interfaces/IRecipe';
-import { useRouter } from 'expo-router';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { View, Button, StyleSheet } from "react-native";
+import { useAuth } from "../context/AuthContext";
+import { Login } from "../components/Login";
+import { CookHistoryWidget } from "../components/CookHistoryWidget";
+import { useEffect, useState } from "react";
+import { getCookHistory } from "../services/cookHistoryService";
+import type { ICookHistory } from "../interfaces/IRecipe";
+import { useRouter } from "expo-router";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function HomeScreen() {
     const { user } = useAuth();
@@ -26,39 +27,41 @@ export default function HomeScreen() {
     if (!user) return <Login />;
 
     return (
-        <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
-            <View style={styles.container}>
-                <View style={styles.historyContainer}>
-                    <CookHistoryWidget cookHistoryArray={history} />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <SafeAreaView style={styles.safeArea} edges={["top", "left", "right"]}>
+                <View style={styles.container}>
+                    <View style={styles.historyContainer}>
+                        <CookHistoryWidget cookHistoryArray={history} />
+                    </View>
+                    <View style={[styles.buttonContainer, { paddingBottom: insets.bottom || 16 }]}>
+                        <Button
+                            title="Show recipes"
+                            onPress={() => router.push({ pathname: "/recipeList" })}
+                            color="#2563eb"
+                        />
+                    </View>
                 </View>
-                <View style={[styles.buttonContainer, { paddingBottom: insets.bottom || 16 }]}>
-                    <Button
-                        title="Show recipes"
-                        onPress={() => router.push({ pathname: '/recipeList' })}
-                        color="#2563eb"
-                    />
-                </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </GestureHandlerRootView>
     );
 }
 
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
     },
     container: {
         flex: 1,
         padding: 12,
-        justifyContent: 'flex-start',
+        justifyContent: "flex-start",
     },
     historyContainer: {
         flex: 1,
         marginBottom: 24,
     },
     buttonContainer: {
-        marginTop: 'auto',
+        marginTop: "auto",
         marginBottom: 0, // Remove fixed margin, handled by insets
     },
 });
