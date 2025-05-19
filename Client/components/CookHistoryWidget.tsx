@@ -9,8 +9,8 @@ import {
     Image,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import type { ICookHistory } from '../interfaces/IRecipe';
-import { recipeMockData } from '../store/mockData/recipeMockData';
+import type { ICookHistory, IRecipe } from '../interfaces/IRecipe';
+import { getRecipes } from '../services/recipeService';
 
 type Props = {
     cookHistoryArray: ICookHistory[];
@@ -19,21 +19,30 @@ type Props = {
 export const CookHistoryWidget: React.FC<Props> = ({ cookHistoryArray }) => {
     const { width, height } = useWindowDimensions();
     const [isLandscape, setIsLandscape] = useState(width > height);
+    const [recipes, setRecipes] = useState<IRecipe[]>([]);
     const router = useRouter();
 
     useEffect(() => {
         setIsLandscape(width > height);
     }, [width, height]);
 
+    // Load recipes from persistent storage/service
+    useEffect(() => {
+        getRecipes().then(setRecipes);
+    }, []);
+
     const sortedHistory = [...cookHistoryArray].sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
     );
 
-    const getRecipe = (id: string) => recipeMockData.find((r) => r.id === id);
+    const getRecipe = (id: string) => recipes.find((r) => r.id === id);
 
     const renderItem = ({ item }: { item: ICookHistory }) => {
         const recipe = getRecipe(item.recipeId);
-        if (!recipe) return null;
+        if (!recipe) {
+            console.warn('No recipe found for recipeId:', item.recipeId);
+            return null;
+        }
 
         const imageSource = { uri: recipe.imageUrl };
 
@@ -80,20 +89,31 @@ export const CookHistoryWidget: React.FC<Props> = ({ cookHistoryArray }) => {
                 />
                 {/* Center: Main info */}
                 <View style={styles.landscapeInfo}>
-                    <Text style={styles.recipeNameLandscape} numberOfLines={1}>{recipe.name}</Text>
+                    <Text
+                        style={styles.recipeNameLandscape}
+                        numberOfLines={1}
+                    >
+                        {recipe.name}
+                    </Text>
                     <Text style={styles.extraLandscape}>Rating: {item.rating} ⭐</Text>
                     <Text style={styles.extraLandscape}>
                         Cooked: {new Date(item.date).toLocaleDateString()}
                     </Text>
                     <Text style={styles.extraLandscape}>Time: {item.totalCookTime} min</Text>
-                    <Text style={styles.extraLandscape}>Favorite: {item.isFavorite ? 'Yes' : 'No'}</Text>
+                    <Text style={styles.extraLandscape}>
+                        Favorite: {item.isFavorite ? 'Yes' : 'No'}
+                    </Text>
                 </View>
                 {/* Right: Ingredients */}
                 <View style={styles.landscapeIngredients}>
                     <Text style={styles.ingredientTitle}>Ingredients:</Text>
                     {recipe.ingredients.slice(0, 4).map((ing) => (
-                        <Text key={ing.id} style={styles.ingredientItemLandscape}>
-                            • {ing.name} {ing.quantity}{ing.unit}
+                        <Text
+                            key={ing.id}
+                            style={styles.ingredientItemLandscape}
+                        >
+                            • {ing.name} {ing.quantity}
+                            {ing.unit}
                         </Text>
                     ))}
                     {recipe.ingredients.length > 4 && (
@@ -143,7 +163,7 @@ const styles = StyleSheet.create({
         shadowRadius: 8,
         shadowOffset: { width: 0, height: 2 },
         minHeight: 120,
-        flex: 1, // Allow widget to grow and FlatList to scroll
+        flex: 1,
     },
     title: {
         fontSize: 22,
@@ -152,7 +172,7 @@ const styles = StyleSheet.create({
         color: '#222',
     },
     list: {
-        flex: 1, // Allow FlatList to grow and scroll
+        flex: 1,
     },
     // Compact view
     compactItem: {
@@ -201,7 +221,7 @@ const styles = StyleSheet.create({
     },
     landscapeInfo: {
         flex: 2,
-        justifyContent: "flex-start",
+        justifyContent: 'flex-start',
         minWidth: 120,
         paddingRight: 12,
     },
@@ -218,20 +238,20 @@ const styles = StyleSheet.create({
     },
     landscapeIngredients: {
         flex: 1.2,
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
         minWidth: 110,
         paddingLeft: 12,
     },
     ingredientTitle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
         fontSize: 18,
         marginBottom: 2,
-        color: "#333",
+        color: '#333',
     },
     ingredientItemLandscape: {
         fontSize: 16,
-        color: "#444",
+        color: '#444',
         marginBottom: 1,
     },
     // Shared

@@ -1,11 +1,98 @@
-import { useLocalSearchParams } from "expo-router";
-import { View, Text } from "react-native";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+  useWindowDimensions,
+} from "react-native";
+import { getRecipeById } from "../../services/recipeService";
+import type { IRecipe, IRecipeStep } from "../../interfaces/IRecipe";
+import { CookStepView } from "../../components/CookStepView";
+import { useAuth } from "../../context/AuthContext";
 
 export default function CookScreen() {
   const { id } = useLocalSearchParams();
+  const [recipe, setRecipe] = useState<IRecipe | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [currentStep, setCurrentStep] = useState(0);
+  const { width, height } = useWindowDimensions();
+  const isLandscape = width > height;
+  const router = useRouter();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (typeof id === "string") {
+      getRecipeById(id).then(r => {
+        setRecipe(r ?? null);
+        setLoading(false);
+      });
+    }
+  }, [id]);
+
+  if (loading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  if (!recipe) {
+    return (
+      <View style={styles.centered}>
+        <Text>Recipe not found.</Text>
+      </View>
+    );
+  }
+
+  if (!user) {
+    return (
+      <View style={styles.centered}>
+        <Text>You must be logged in to cook!</Text>
+      </View>
+    );
+  }
+
+  const steps = recipe.steps;
+
+  function handlePrev() {
+    if (currentStep === 0) {
+      router.back();
+    } else {
+      setCurrentStep(s => Math.max(0, s - 1));
+    }
+  }
+
+  function handleNext() {
+    if (currentStep === steps.length - 1) {
+      // TODO: Create cookHistory item here
+      router.replace({ pathname: "/cookHistory/[id]", params: { id: id } });
+    } else {
+      setCurrentStep(s => Math.min(steps.length - 1, s + 1));
+    }
+  }
+
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Cook Screen for Recipe ID: {id}</Text>
+    <View style={styles.container}>
+      <CookStepView
+        step={steps[currentStep]}
+        stepIndex={currentStep}
+        totalSteps={steps.length}
+        onPrev={handlePrev}
+        onNext={handleNext}
+        isFirst={currentStep === 0}
+        isLast={currentStep === steps.length - 1}
+        isLandscape={isLandscape}
+        allSteps={steps}
+        currentUserId={user.id}
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#fff" },
+  centered: { flex: 1, justifyContent: "center", alignItems: "center" },
+});
