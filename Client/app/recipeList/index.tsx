@@ -23,7 +23,7 @@ export default function RecipeListScreen() {
             style={styles.item}
             onPress={() => router.push({ pathname: "/recipe/[id]", params: { id: item.id } })}
           >
-            <Image source={{ uri: item.imageUrl }} style={styles.image} />
+            <Image source={require("../../assets/images/recipes/default.jpg")} style={styles.image} />
             <View style={styles.info}>
               <Text style={styles.name}>{item.name}</Text>
               <Text style={styles.desc} numberOfLines={1}>{item.description}</Text>

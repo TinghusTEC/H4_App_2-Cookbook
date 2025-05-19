@@ -56,7 +56,7 @@ export const CookHistoryWidget: React.FC<Props> = ({ cookHistoryArray }) => {
                     }
                 >
                     <Image
-                        source={imageSource}
+                        source={require('../assets/images/recipes/default.jpg')}
                         style={styles.compactImage}
                     />
                     <View style={styles.compactTextContainer}>
