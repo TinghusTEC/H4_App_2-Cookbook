@@ -9,7 +9,7 @@ export const mockRecipeVegetarianChili: IRecipe = {
   globalRating: 4.5,
   yourRating: 4,
   tags: ["Vegetarian", "Chili", "Healthy"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Kidney Beans", quantity: "400", unit: "g" },
     { id: mockDataUtils.generateId(), name: "Black Beans", quantity: "400", unit: "g" },

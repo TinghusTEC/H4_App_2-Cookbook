@@ -9,7 +9,7 @@ export const mockRecipeBeefLasagna: IRecipe = {
   globalRating: 4.8,
   yourRating: 5,
   tags: ["Italian", "Pasta", "Beef"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Lasagna Sheets", quantity: "12", unit: "pcs" },
     { id: mockDataUtils.generateId(), name: "Ground Beef", quantity: "500", unit: "g" },

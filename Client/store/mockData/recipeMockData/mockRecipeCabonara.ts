@@ -9,7 +9,7 @@ export const mockRecipeCabonara: IRecipe = {
   globalRating: 4.7,
   yourRating: 5,
   tags: ["Italian", "Pasta", "Quick"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Spaghetti", quantity: "400", unit: "g" },
     { id: mockDataUtils.generateId(), name: "Pancetta", quantity: "150", unit: "g" },

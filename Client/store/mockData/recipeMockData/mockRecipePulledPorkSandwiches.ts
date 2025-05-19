@@ -9,7 +9,7 @@ export const mockRecipePulledPorkSandwiches: IRecipe = {
   globalRating: 4.9,
   yourRating: 5,
   tags: ["American", "Pork", "Sandwich"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Pork Shoulder", quantity: "1", unit: "kg" },
     { id: mockDataUtils.generateId(), name: "BBQ Sauce", quantity: "200", unit: "ml" },

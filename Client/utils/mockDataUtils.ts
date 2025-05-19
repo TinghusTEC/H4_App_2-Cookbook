@@ -1,3 +1,5 @@
+import { mockUsers } from "@/store/mockData/mockUserData";
+
 const comments = [
   "Turned out great!",
   "Family loved it.",
@@ -21,8 +23,12 @@ export const mockDataUtils = {
     generateId: () => {
         return Math.random().toString(36).substring(2, 15);
     },
-    getImageUrl: () => {
-        return "https://images.unsplash.com/photo-1504674900247-0877df9cc836";
+    getRecipeImageUrl: (recipeId: string | null) => {
+        if (!recipeId) {
+            return "/assets/images/recipes/default.jpg";
+        }
+        const imagePath = `/assets/images/recipes/${recipeId}.jpg`;   
+        return imagePath;
     },
     getRandomDateWithinDays: (days: number) => {
         const now = new Date();
@@ -44,5 +50,9 @@ export const mockDataUtils = {
     },
     getRandomRating: () => {
         return Math.floor(Math.random() * 5) + 1;
-    }
+    },
+    getRandomUserId: () => {
+        const randomIndex = Math.floor(Math.random() * mockUsers.length);
+        return mockUsers[randomIndex].id;
+    },
 }

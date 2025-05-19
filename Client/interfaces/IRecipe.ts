@@ -18,6 +18,7 @@ export interface IRecipe {
 
 export interface ICookHistory {
     id: string;
+    userId: string;
     recipeId: string;
     date: Date;
     rating: number;

@@ -9,7 +9,7 @@ export const mockRecipePadThai: IRecipe = {
   globalRating: 4.7,
   yourRating: 5,
   tags: ["Thai", "Noodles", "Shrimp", "Tofu"],
-  imageUrl: mockDataUtils.getImageUrl(),
+  imageUrl: mockDataUtils.getRecipeImageUrl(),
   ingredients: [
     { id: mockDataUtils.generateId(), name: "Rice Noodles", quantity: "200", unit: "g" },
     { id: mockDataUtils.generateId(), name: "Shrimp", quantity: "150", unit: "g" },

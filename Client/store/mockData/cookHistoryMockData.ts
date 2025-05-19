@@ -9,6 +9,7 @@ export const cookHistoryMockData: ICookHistory[] = Array.from({ length: 15 }).ma
 
   return {
     id: mockDataUtils.generateId(),
+    userId: mockDataUtils.getRandomUserId(),
     recipeId: recipe.id,
     date: mockDataUtils.getRandomDateWithinDays(60),
     rating: mockDataUtils.getRandomRating(),
