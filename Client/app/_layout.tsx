@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { router, Stack } from "expo-router";
 import { Header } from "../components/Header";
 import { View } from "react-native";
 import { AuthProvider } from "../context/AuthContext";
@@ -11,9 +11,7 @@ export default function RootLayout() {
           onMenu={() => {
             // TODO: open drawer or show menu with Home, Mock1, Mock2
           }}
-          onProfile={() => {
-            // TODO: navigate to profile
-          }}
+          onProfile={() => router.push({ pathname: "/account" })}
           onSearch={(q) => {
             // TODO: handle search
           }}
@@ -24,6 +22,7 @@ export default function RootLayout() {
           <Stack.Screen name="cook/[id]" options={{ title: "Cook" }} />
           <Stack.Screen name="recipe/index" options={{ title: "Recipes" }} />
           <Stack.Screen name="recipeList/index" options={{ title: "Recipes" }} />
+          <Stack.Screen name="account/index" options={{ title: "Account" }} />
         </Stack>
       </View>
     </AuthProvider>
