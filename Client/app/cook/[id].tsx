@@ -67,8 +67,8 @@ export default function CookScreen() {
 
   function handleNext() {
     if (currentStep === steps.length - 1) {
-      // TODO: Create cookHistory item here
-      router.replace({ pathname: "/cookHistory/[id]", params: { id: id } });
+      const recipeId = Array.isArray(id) ? id[0] : id;
+      router.replace({ pathname: "/cookHistory/[id]", params: { id: recipeId } });
     } else {
       setCurrentStep(s => Math.min(steps.length - 1, s + 1));
     }
