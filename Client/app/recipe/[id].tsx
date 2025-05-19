@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { getRecipeById } from '../../services/recipeService';
 import type { IRecipe } from '../../interfaces/IRecipe';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export const options = {
     title: 'Recipes',
@@ -25,6 +26,7 @@ export default function RecipeScreen() {
     const { width, height } = useWindowDimensions();
     const isLandscape = width > height;
     const router = useRouter();
+    const insets = useSafeAreaInsets();
 
     React.useEffect(() => {
         if (typeof id === 'string') {
@@ -37,17 +39,21 @@ export default function RecipeScreen() {
 
     if (loading) {
         return (
-            <View style={styles.centered}>
-                <ActivityIndicator size='large' />
-            </View>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                <View style={styles.centered}>
+                    <ActivityIndicator size='large' />
+                </View>
+            </SafeAreaView>
         );
     }
 
     if (!recipe) {
         return (
-            <View style={styles.centered}>
-                <Text>Recipe not found.</Text>
-            </View>
+            <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+                <View style={styles.centered}>
+                    <Text>Recipe not found.</Text>
+                </View>
+            </SafeAreaView>
         );
     }
 
@@ -131,33 +137,40 @@ export default function RecipeScreen() {
 
     // --- Layout ---
     return (
-        <View style={{ flex: 1 }}>
-            <ScrollView
-                contentContainerStyle={isLandscape ? styles.landscapeScroll : styles.portraitScroll}
-            >
-                {isLandscape ? (
-                    <>
-                        <View style={styles.landscapeTopRow}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+            <View style={{ flex: 1 }}>
+                <ScrollView
+                    contentContainerStyle={
+                        isLandscape ? styles.landscapeScroll : styles.portraitScroll
+                    }
+                >
+                    {isLandscape ? (
+                        <>
+                            <View style={styles.landscapeTopRow}>
+                                <Overview />
+                                <Requirements />
+                            </View>
+                            <Steps />
+                        </>
+                    ) : (
+                        <>
                             <Overview />
                             <Requirements />
-                        </View>
-                        <Steps />
-                    </>
-                ) : (
-                    <>
-                        <Overview />
-                        <Requirements />
-                        <Steps />
-                    </>
-                )}
-            </ScrollView>
-            <TouchableOpacity
-                style={styles.cookButton}
-                onPress={() => router.push({ pathname: '/cook/[id]', params: { id: recipe.id } })}
-            >
-                <Text style={styles.cookButtonText}>Start Cooking</Text>
-            </TouchableOpacity>
-        </View>
+                            <Steps />
+                        </>
+                    )}
+                </ScrollView>
+                <TouchableOpacity
+                    style={[
+                        styles.cookButton,
+                        { paddingBottom: insets.bottom || 16 }
+                    ]}
+                    onPress={() => router.push({ pathname: '/cook/[id]', params: { id: recipe.id } })}
+                >
+                    <Text style={styles.cookButtonText}>Start Cooking</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
     );
 }
 

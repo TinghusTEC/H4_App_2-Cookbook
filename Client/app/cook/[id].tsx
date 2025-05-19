@@ -7,6 +7,7 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from "react-native";
+import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { getRecipeById } from "../../services/recipeService";
 import type { IRecipe, IRecipeStep } from "../../interfaces/IRecipe";
 import { CookStepView } from "../../components/CookStepView";
@@ -21,6 +22,7 @@ export default function CookScreen() {
   const isLandscape = width > height;
   const router = useRouter();
   const { user } = useAuth();
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     if (typeof id === "string") {
@@ -33,25 +35,31 @@ export default function CookScreen() {
 
   if (loading) {
     return (
-      <View style={styles.centered}>
-        <ActivityIndicator size="large" />
-      </View>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.centered}>
+          <ActivityIndicator size="large" />
+        </View>
+      </SafeAreaView>
     );
   }
 
   if (!recipe) {
     return (
-      <View style={styles.centered}>
-        <Text>Recipe not found.</Text>
-      </View>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.centered}>
+          <Text>Recipe not found.</Text>
+        </View>
+      </SafeAreaView>
     );
   }
 
   if (!user) {
     return (
-      <View style={styles.centered}>
-        <Text>You must be logged in to cook!</Text>
-      </View>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.centered}>
+          <Text>You must be logged in to cook!</Text>
+        </View>
+      </SafeAreaView>
     );
   }
 
@@ -75,24 +83,27 @@ export default function CookScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <CookStepView
-        step={steps[currentStep]}
-        stepIndex={currentStep}
-        totalSteps={steps.length}
-        onPrev={handlePrev}
-        onNext={handleNext}
-        isFirst={currentStep === 0}
-        isLast={currentStep === steps.length - 1}
-        isLandscape={isLandscape}
-        allSteps={steps}
-        currentUserId={user.id}
-      />
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={[styles.container, { paddingBottom: insets.bottom || 0 }]}>
+        <CookStepView
+          step={steps[currentStep]}
+          stepIndex={currentStep}
+          totalSteps={steps.length}
+          onPrev={handlePrev}
+          onNext={handleNext}
+          isFirst={currentStep === 0}
+          isLast={currentStep === steps.length - 1}
+          isLandscape={isLandscape}
+          allSteps={steps}
+          currentUserId={user.id}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff" },
+  safeArea: { flex: 1, backgroundColor: "#fff" },
+  container: { flex: 1 },
   centered: { flex: 1, justifyContent: "center", alignItems: "center" },
 });
