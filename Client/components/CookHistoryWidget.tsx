@@ -26,7 +26,6 @@ export const CookHistoryWidget: React.FC<Props> = ({ cookHistoryArray }) => {
         setIsLandscape(width > height);
     }, [width, height]);
 
-    // Load recipes from persistent storage/service
     useEffect(() => {
         getRecipes().then(setRecipes);
     }, []);
@@ -47,7 +46,6 @@ export const CookHistoryWidget: React.FC<Props> = ({ cookHistoryArray }) => {
         const imageSource = { uri: recipe.imageUrl };
 
         if (!isLandscape) {
-            // Compact view for portrait
             return (
                 <TouchableOpacity
                     style={styles.compactItem}
@@ -74,7 +72,6 @@ export const CookHistoryWidget: React.FC<Props> = ({ cookHistoryArray }) => {
             );
         }
 
-        // Landscape: horizontal layout, larger text, better alignment
         return (
             <TouchableOpacity
                 style={styles.itemLandscape}

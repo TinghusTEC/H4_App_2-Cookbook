@@ -12,7 +12,6 @@ export const Login: React.FC = () => {
   const { setUser } = useAuth();
   const [users, setUsers] = useState(mockUsers);
 
-  // Load order from AsyncStorage
   useEffect(() => {
     (async () => {
       const saved = await AsyncStorage.getItem(STORAGE_KEY);

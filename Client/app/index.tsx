@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         marginTop: "auto",
-        marginBottom: 0, // Remove fixed margin, handled by insets
+        marginBottom: 0,
     },
 });

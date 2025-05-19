@@ -61,7 +61,6 @@ export const CookStepView: React.FC<Props> = ({
         });
     }, [currentUserId]);
 
-    // Persist state on change
     useEffect(() => {
         const persist: PersistedState = {
             stepIndex,
@@ -77,7 +76,6 @@ export const CookStepView: React.FC<Props> = ({
         return () => clearInterval(interval);
     }, []);
 
-    // Scroll to current step
     useEffect(() => {
         setTimeout(() => {
             scrollViewRef.current?.scrollTo({
@@ -87,7 +85,6 @@ export const CookStepView: React.FC<Props> = ({
         }, 100);
     }, [stepIndex]);
 
-    // Handle app resume (restore timer)
     useEffect(() => {
         const sub = AppState.addEventListener('change', (state) => {
             if (state === 'active') {
@@ -115,8 +112,7 @@ export const CookStepView: React.FC<Props> = ({
     function handleTimerToggle(stepId: string, duration: number, text: string) {
         setTimers((prev) => {
             const t = prev[stepId];
-            if (!t || !t.running) {
-                // Start or resume
+            if (!t?.running) {
                 if (Platform.OS !== 'web') {
                     Notifications.scheduleNotificationAsync({
                         content: {
@@ -168,7 +164,6 @@ export const CookStepView: React.FC<Props> = ({
         }
     }
 
-    // --- Button logic ---
     const s = allSteps[stepIndex];
     const isTimer = s.type && 'startTime' in s.type;
     const timerState = timers[s.id];
@@ -236,7 +231,6 @@ export const CookStepView: React.FC<Props> = ({
                 <Text style={styles.navButtonText}>{isFirst ? 'Cancel' : 'Previous'}</Text>
             </TouchableOpacity>
 
-            {/* Middle: Steps in a scrollable area */}
             <View style={styles.scrollArea}>
                 <ScrollView
                     ref={scrollViewRef}

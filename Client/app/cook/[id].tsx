@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import { getRecipeById } from "../../services/recipeService";
-import type { IRecipe, IRecipeStep } from "../../interfaces/IRecipe";
+import type { IRecipe } from "../../interfaces/IRecipe";
 import { CookStepView } from "../../components/CookStepView";
 import { useAuth } from "../../context/AuthContext";
 

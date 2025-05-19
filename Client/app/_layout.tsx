@@ -10,11 +10,9 @@ export default function RootLayout() {
         <GestureHandlerRootView style={{ flex: 1 }}>
             <AuthProvider>
                 <SafeAreaView style={{ flex: 1 }} edges={["top", "left", "right"]}>
-                    {" "}
-                    {/* Wrap with SafeAreaView */}
                     <Header
                         onMenu={() => {
-                            // TODO: open drawer or show menu with Home, Mock1, Mock2
+                            // TODO: Move menu logic to a separate component
                         }}
                         onProfile={() => router.push({ pathname: "/account" })}
                         onSearch={(q) => {
