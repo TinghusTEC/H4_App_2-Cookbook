@@ -6,11 +6,13 @@ import { useEffect, useState } from 'react';
 import { getCookHistory } from '../services/cookHistoryService';
 import type { ICookHistory } from '../interfaces/IRecipe';
 import { useRouter } from 'expo-router';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
     const { user } = useAuth();
     const [history, setHistory] = useState<ICookHistory[]>([]);
     const router = useRouter();
+    const insets = useSafeAreaInsets();
 
     useEffect(() => {
         if (user) {
@@ -24,22 +26,28 @@ export default function HomeScreen() {
     if (!user) return <Login />;
 
     return (
-        <View style={styles.container}>
-            <View style={styles.historyContainer}>
-                <CookHistoryWidget cookHistoryArray={history} />
+        <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
+            <View style={styles.container}>
+                <View style={styles.historyContainer}>
+                    <CookHistoryWidget cookHistoryArray={history} />
+                </View>
+                <View style={[styles.buttonContainer, { paddingBottom: insets.bottom || 16 }]}>
+                    <Button
+                        title="Show recipes"
+                        onPress={() => router.push({ pathname: '/recipeList' })}
+                        color="#2563eb"
+                    />
+                </View>
             </View>
-            <View style={styles.buttonContainer}>
-                <Button
-                    title="Show recipes"
-                    onPress={() => router.push({ pathname: '/recipeList' })}
-                    color="#2563eb"
-                />
-            </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
     container: {
         flex: 1,
         padding: 12,
@@ -51,6 +59,6 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         marginTop: 'auto',
-        marginBottom: 24,
+        marginBottom: 0, // Remove fixed margin, handled by insets
     },
 });
