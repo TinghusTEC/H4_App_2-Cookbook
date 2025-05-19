@@ -6,11 +6,11 @@ import {
   ActivityIndicator,
   StyleSheet,
   useWindowDimensions,
-  Alert,
 } from "react-native";
 import { getRecipeById } from "../../services/recipeService";
 import type { IRecipe, IRecipeStep } from "../../interfaces/IRecipe";
 import { CookStepView } from "../../components/CookStepView";
+import { useAuth } from "../../context/AuthContext";
 
 export default function CookScreen() {
   const { id } = useLocalSearchParams();
@@ -20,6 +20,7 @@ export default function CookScreen() {
   const { width, height } = useWindowDimensions();
   const isLandscape = width > height;
   const router = useRouter();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (typeof id === "string") {
@@ -46,11 +47,18 @@ export default function CookScreen() {
     );
   }
 
+  if (!user) {
+    return (
+      <View style={styles.centered}>
+        <Text>You must be logged in to cook!</Text>
+      </View>
+    );
+  }
+
   const steps = recipe.steps;
 
   function handlePrev() {
     if (currentStep === 0) {
-      // Cancel: go back
       router.back();
     } else {
       setCurrentStep(s => Math.max(0, s - 1));
@@ -60,7 +68,7 @@ export default function CookScreen() {
   function handleNext() {
     if (currentStep === steps.length - 1) {
       // TODO: Create cookHistory item here
-      router.replace("/cookHistory");
+      router.replace({ pathname: "/cookHistory/[id]", params: { id: id } });
     } else {
       setCurrentStep(s => Math.min(steps.length - 1, s + 1));
     }
@@ -78,6 +86,7 @@ export default function CookScreen() {
         isLast={currentStep === steps.length - 1}
         isLandscape={isLandscape}
         allSteps={steps}
+        currentUserId={user.id}
       />
     </View>
   );
