@@ -46,8 +46,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
     },
     historyContainer: {
-        flexGrow: 0,
-        flexShrink: 1,
+        flex: 1,
         marginBottom: 24,
     },
     buttonContainer: {
